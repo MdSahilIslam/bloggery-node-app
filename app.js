@@ -9,7 +9,7 @@ const { route2 } = require("./routes/route2");
 const Blog = require('./modules/blog')
 
 const app = express();
-const PORT =  8001;
+const PORT = process.env.PORT || 8001;
 console.log("The env port is :", process.env.MONGO_URI)
 
 
