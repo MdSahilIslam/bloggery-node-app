@@ -49,7 +49,7 @@
     <script>
       function deleteDoc(blogId,blogTitle) {
         if (confirm(`Are you sure you want to delete blog '${blogTitle}'`)) {
-          fetch(`http://localhost:8001/blog/dlt-blog/${blogId}`,{method: "GET"})
+          fetch(`https://bloggery-node-app.onrender.com/blog/dlt-blog/${blogId}`,{method: "GET"})
             .then(response => {
               window.location.reload()
             })
