@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/header') %>
+    <title>Home</title>
+  </head>
+  <body>
+    <%- include('./partials/navbar') %>
+    <div class="container mt-4" >
+      <div style="border-bottom: 1px solid black; ">
+        <div class="d-flex" >
+        <img
+          src="<%= blog.createdBy.profileImageUrl %>"
+          width="50vw"
+          height="50vw"
+          class="m-2"
+          style="border-radius: 50%;"
+        />
+        <h4 class="mt-3"><%= blog.createdBy.fullName %></h4>
+      </div>
+      </div>
+      
+
+      <div class="container text" style="text-align: center;">
+        <img src="<%= blog.coverImageUrl %>" width="70%" class="mt-2" />
+      </div>
+      
+      <h2 class="mt-3"><%= blog.title %></h2>
+      <span class="mt-3 container" style="overflow-wrap: anywhere">
+        <%= blog.body %></span
+      >
+
+      <div>
+        <h2>Comments (<%= comment.length %>)</h2>
+        <% if (locals.user) { %>
+        <form action="/blog/comment/<%= blog._id %>" method="post">
+          <textarea
+            type="text"
+            placeholder="Add Comment"
+            name="commentBody"
+            class="form-control"
+            required
+            wrap="solid"
+          ></textarea>
+          <button type="submit" class="btn btn-primary mt-2">Add</button>
+        </form>
+        <% } %>
+
+        <div>
+          <% comment.forEach(cmt => { %>
+          <div class="d-flex mt-3">
+            <img
+              src="<%= cmt.createdBy.profileImageUrl %>"
+              width="50vw"
+              height="50vw"
+              class="m-2"
+              style="border-radius: 50%;"
+            />
+            <div >
+              <h5 style="margin-top: 10px; margin-bottom: 0;"><%= cmt.createdBy.fullName %></h5>
+              <pre style="font-size: 13px; color: rgb(137, 136, 136);"><%= createDate(`${cmt.createdAt}`) %></pre>
+            </div>
+            
+          </div>
+          <p class="container " style="margin: 0 20px; overflow-wrap: anywhere;"><%= cmt.commentBody %></p>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+    
+    <script>
+      
+    </script>
+
+    <%- include('./partials/script') %>
+  </body>
+</html>

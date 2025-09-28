@@ -1,0 +1,1 @@
+This is a node js application for Blog posting.

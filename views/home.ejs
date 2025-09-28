@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/header') %>
+    <style>
+      .blog-card{
+        display : flex;
+        justify-content: center;
+        /* align-items: center; */
+      }
+    </style>
+    <title>Home</title>
+  </head>
+  <body>
+    <%- include('./partials/navbar') %>
+    <% if (locals.tag) { %>
+     <h1 class="container mt-4">My Personal Blogs</h1>
+    <% }else { %>
+      <h1 class="container mt-4">This is the home page</h1>
+    <% } %>
+    
+  
+    <div class="container  mt-4 ">
+      <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2">
+      <% blogs.forEach(blog => { %>
+      <div class="col mt-3 mb-3 blog-card">
+        <div class="card" style="width: 18rem">
+          <img alt="" class="card-img-top" src= <%=blog.coverImageUrl%>
+          />
+          <div class="card-body">
+            <h5 class="card-title"><%= blog.title %></h5>
+
+            <a href="/blog/<%= blog._id %>" class="btn btn-primary"
+              >Read Blog</a
+            >
+            <% if (locals.tag) { %>
+              <a onclick="deleteDoc('<%= blog.id %>','<%= blog.title %>')" class="btn btn-danger"
+              style="margin-left: 43px;">Delete Blog </a
+            >
+            <% } %>
+           
+          </div>
+        </div>
+      </div>
+
+      <% }) %>
+      </div>
+    </div>
+    <script>
+      function deleteDoc(blogId,blogTitle) {
+        if (confirm(`Are you sure you want to delete blog '${blogTitle}'`)) {
+          fetch(`http://localhost:8001/blog/dlt-blog/${blogId}`,{method: "GET"})
+            .then(response => {
+              window.location.reload()
+            })
+            .catch(err => {
+              console.log("err:",err)
+            })
+        }
+      }
+    </script>
+    <%- include('./partials/script') %>
+  </body>
+</html>

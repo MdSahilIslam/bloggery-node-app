@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/header') %>
+    <title>Sign Up</title>
+  </head>
+  <body>
+    <%- include('./partials/navbar') %>
+    <h1 class="mt-4 container">This is the Sign up page</h1>
+    <div class="container mt-4">
+      <form action="/user/signup" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+          <label for="profileImage" class="form-label"
+            >Profile Image</label
+          >
+          <input
+            type="file"
+            class="form-control"
+            id="profileImage"
+            aria-describedby="emailHelp"
+            name="profileIamge"
+          />
+        </div>
+        
+        <div class="mb-3">
+          <label for="fullname" class="form-label"
+            >Full Name <span style="color: red;">*</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="full-name"
+            aria-describedby="emailHelp"
+            name="fullName"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label"
+            >Email address <span style="color: red;">*</label
+          >
+          <input
+            type="email"
+            class="form-control"
+            id="input-email"
+            aria-describedby="emailHelp"
+            name="email"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Password <span style="color: red;">*</span></label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            name="password"
+            required
+          />
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+    <%- include('./partials/script') %>
+  </body>
+</html>
